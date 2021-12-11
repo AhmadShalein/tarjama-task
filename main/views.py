@@ -1,15 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
-
-
+form django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
 def index(request):
     return render(request, 'main/index.html', {})
 
+@login_required
 def login(request):
-    if request.user.is_authenticated:
-        return render(request, 'main/page.html', {})
-    else:
-        # return HttpResponseRedirect('')
-        return render(request, 'main/index.html', {})
+    return render(request, 'main/page.html', {})
